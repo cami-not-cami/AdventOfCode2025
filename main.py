@@ -1,7 +1,5 @@
 class Main:
     def __init__(self):
-        f = open("inputs")
-
         self.currentIndex = 50
         self.passwordNr =0
         with open("inputs") as f:
@@ -24,15 +22,27 @@ class Main:
         number = int(parsedDigits)
         return number
 
-    def calculate(self, number, isPlus):
-        if self.currentIndex == 0:
-            self.passwordNr += 1
 
+    def calculate(self, number, isPlus):
+        #if self.currentIndex == 0 :
+            #self.passwordNr += 1
 
         if isPlus:
+            self.passwordNr += (self.currentIndex + number) //100
             self.currentIndex = (self.currentIndex + number) % 100
         else:
+
+            if self.currentIndex > 0 and (self.currentIndex - number) <= 0:
+                remainingSteps = number - self.currentIndex
+                self.passwordNr += 1 + (remainingSteps // 100)
+
+            elif self.currentIndex == 0:
+                self.passwordNr += number // 100
+
             self.currentIndex = (self.currentIndex - number) % 100
+
+
+
 
 
 Main()
