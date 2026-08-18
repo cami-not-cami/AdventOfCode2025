@@ -1,27 +1,36 @@
+import csv
+from operator import index
+
 class Main:
     def __init__(self):
         total = 0
         with open("inputs") as f:
             numberList = f.readlines()
 
+            #iterate each row
             for l in numberList:
-                idList = l.split(",")
-                for id in idList:
+                clean_list = l.strip()
+                # Reset highest for each new row
+                highest = 0
 
-                    individ = id.split("-")
-                    num1 = int(individ[0])
-                    num2 = int(individ[1])
-                    for i in range(num1, num2 + 1):
-                        #still comparing the strings to see if they are doubled
-                        #if yes its a pattern so i add to total
-                        text = str(i)
-                        doubled = text + text
-                        middle = doubled[1:-1]
+                #this is kind of like a bubble sort but instead of swapping elements i compare all possible pairs and take only the highest
 
-                        if text in middle:
-                            total += i
+                # iterate each tens digit so 81 -> 8
+                for i in range(len(clean_list) - 1):
+                    # next digit -> 1
+                    for j in range(i + 1, len(clean_list)):
+                        # create the combined nr so 81
+                        combined_num = int(clean_list[i] + clean_list[j])
 
-        print("Total of stuff:", total)
+                        # if it is higher than the currently saved highest one
+                        # overwrite it with the new highest
+                        if combined_num > highest:
+                            highest = combined_num
+
+                # add highest from each row
+                total += highest
+
+            print(total)
 
 
 Main()
