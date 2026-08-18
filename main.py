@@ -1,46 +1,28 @@
 class Main:
     def __init__(self):
-        self.currentIndex = 50
-        self.passwordNr =0
+        total=0
+        counter=0
         with open("inputs") as f:
-            inputsList = f.read().splitlines()
+            numberList = f.readlines()
 
-            for right in inputsList:
-                if 'R' in right:
-                    self.isPlus = True
-                    number = self.parseInput(right)
-                else:
-                    self.isPlus = False
-                    number = self.parseInput(right)
+            for l in numberList:
+                idList = l.split(",")
+                for id in idList:
 
-                self.calculate(number, self.isPlus)
-                print(f"Current Index: {self.currentIndex}, Password Nr: {self.passwordNr}")
+                    individ =id.split("-")
+                    num1=int(individ[0])
+                    num2=int(individ[1])
+                    for i in range(num1,num2 +1):
+                        string=str(i)
+                        length = len(string)
+                        if length % 2 == 0:
+                            half_nr = length // 2
+                            first = string[:half_nr]
+                            second = string[half_nr:]
+                            if(first == second):
+                                total+=i
 
-
-    def parseInput(self, input):
-        parsedDigits= "".join(c for c in input if c.isdigit())
-        number = int(parsedDigits)
-        return number
-
-
-    def calculate(self, number, isPlus):
-        #if self.currentIndex == 0 :
-            #self.passwordNr += 1
-
-        if isPlus:
-            self.passwordNr += (self.currentIndex + number) //100
-            self.currentIndex = (self.currentIndex + number) % 100
-        else:
-
-            if self.currentIndex > 0 and (self.currentIndex - number) <= 0:
-                remainingSteps = number - self.currentIndex
-                self.passwordNr += 1 + (remainingSteps // 100)
-
-            elif self.currentIndex == 0:
-                self.passwordNr += number // 100
-
-            self.currentIndex = (self.currentIndex - number) % 100
-
+        print("Total of stuff:", total)
 
 
 
