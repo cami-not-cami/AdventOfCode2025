@@ -1,4 +1,3 @@
-import csv
 from operator import index
 
 class Main:
@@ -7,30 +6,29 @@ class Main:
         with open("inputs") as f:
             numberList = f.readlines()
 
-            #iterate each row
             for l in numberList:
                 clean_list = l.strip()
-                # Reset highest for each new row
-                highest = 0
 
-                #this is kind of like a bubble sort but instead of swapping elements i compare all possible pairs and take only the highest
+                #12 digits is maximum
+                remove = len(clean_list) - 12
+                stack = []
+                                #stack.append(1)  # Push
+                                #stack[-1]  # Peek
+                                #stack.pop()  # Pop
 
-                # iterate each tens digit so 81 -> 8
-                for i in range(len(clean_list) - 1):
-                    # next digit -> 1
-                    for j in range(i + 1, len(clean_list)):
-                        # create the combined nr so 81
-                        combined_num = int(clean_list[i] + clean_list[j])
+                for digit in clean_list:
+                    # if the current digit is bigger than the last saved digit
+                    # throw away the smaller digit if we still have removals left
+                    while stack and remove > 0 and stack[-1] < digit:
+                        stack.pop()
+                        remove -= 1
+                    stack.append(digit)
 
-                        # if it is higher than the currently saved highest one
-                        # overwrite it with the new highest
-                        if combined_num > highest:
-                            highest = combined_num
-
-                # add highest from each row
+                # keep only the first 12 digits
+                highest = int("".join(stack[:12]))
                 total += highest
 
-            print(total)
+            print("Total for batteries:", total)
 
 
 Main()
