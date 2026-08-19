@@ -3,7 +3,7 @@ from operator import index
 class Main:
     def __init__(self):
         total = 0
-        with open("day4/inputs") as f:
+        with open("inputs") as f:
             numberList = f.readlines()
 
             for l in numberList:
