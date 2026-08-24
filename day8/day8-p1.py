@@ -57,7 +57,3 @@ sizes.sort(reverse=True)
 answer=sizes[0]*sizes[1]*sizes[2]
 
 print(answer)
-
-
-
-
