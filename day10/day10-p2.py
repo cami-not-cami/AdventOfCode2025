@@ -1,4 +1,6 @@
-
+import os
+import numpy as np
+from scipy.optimize import milp, LinearConstraint, Bounds
 from collections import deque
 
 #part 2 of day 10 works with the example inputs but hits a bottleneck
@@ -41,10 +43,6 @@ with open("inputs", "r") as f:
 
 
 #solved with ai, i dont know linear algebra and i just wanted my star
-import os
-import numpy as np
-from scipy.optimize import milp, LinearConstraint, Bounds
-
 
 def solve_machine_scipy(joltage_target, button_list):
     n_buttons = len(button_list)
