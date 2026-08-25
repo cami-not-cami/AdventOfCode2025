@@ -1,5 +1,4 @@
 import itertools
-import re
 
 light_diagramm = []
 button_wiring = []
