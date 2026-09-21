@@ -30,7 +30,7 @@ class Main:
                 # add highest from each row
                 total += highest
 
-            print(total)
+        print(total)
 
 
 Main()

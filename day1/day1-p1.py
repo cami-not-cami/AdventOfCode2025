@@ -16,7 +16,7 @@ class Main:
                     number = self.parseInput(right)
 
                 self.calculate(number, self.isPlus)
-                print(f"Current Index: {self.currentIndex}, Password Nr: {self.passwordNr}")
+        print(f"Current Index: {self.currentIndex}, Password Nr: {self.passwordNr}")
 
 
     def parseInput(self, input):

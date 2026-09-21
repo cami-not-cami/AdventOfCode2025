@@ -28,7 +28,7 @@ class Main:
                 highest = int("".join(stack[:12]))
                 total += highest
 
-            print("Total for batteries:", total)
+        print("Total for batteries:", total)
 
 
 Main()
