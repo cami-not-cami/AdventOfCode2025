@@ -3,7 +3,7 @@ set -e
 
 echo "=== Running advent of code 2025 ==="
 
-for dir in day*/; do
+for dir in $(ls -d day*/ | sort -V); do
     echo "--- Entering $dir ---"
     cd "$dir"
     
